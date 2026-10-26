@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "c:\\store\\.archify\\architecture-ecommerce-20261025-164742\\candidate.json",
+    "sha256": "613691fbe0421f60565faf2b59989134fbc20544c70183c67e1056215e72c3b5",
+    "bytes": 5248
+  },
+  "artifact": {
+    "path": "c:\\store\\.archify\\architecture-ecommerce-20261025-164742\\architecture.html",
+    "sha256": "2fbc10a28cc99a17e2d8e33bb39e28cb1f7099bace3fbb919f998eab1063ab25",
+    "bytes": 838599
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "c:\\store\\.archify\\architecture-ecommerce-20261025-164742\\review-2\\architecture.finalize.json",
+    "summaryReceipt": "c:\\store\\.archify\\architecture-ecommerce-20261025-164742\\review-2\\architecture.finalize-summary.json",
+    "browserCheckReceipt": "c:\\store\\.archify\\architecture-ecommerce-20261025-164742\\review-2\\architecture.browser-check.json"
+  },
+  "visualReview": "not-requested",
+  "durationMs": 5424,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  }
+}

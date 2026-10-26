@@ -10,6 +10,7 @@ import cartRoutes from './src/routes/cart.routes';
 import orderRoutes from './src/routes/order.routes';
 import addressRoutes from './src/routes/address.routes'; 
 import paymentRoutes from './src/routes/payment.routes'; 
+import chatRoutes from './src/routes/chat.routes'; // استيراد راوت الشات الجديد
 import { errorHandler } from './src/middleware/error.middleware';
 
 dotenv.config();
@@ -21,10 +22,10 @@ const PORT = process.env.PORT || 5000;
 // Middlewares الأساسية
 // ==========================================
 app.use(cors());
-app.use(express.json()); // لقراءة بيانات JSON في الـ Body
+app.use(express.json());
 
 // ==========================================
-// الملفات الثابتة (يُفضل وضعها في الأعلى)
+// الملفات الثابتة
 // ==========================================
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
@@ -38,6 +39,7 @@ app.use('/api/carts', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/addresses', addressRoutes); 
 app.use('/api/payments', paymentRoutes);
+app.use('/api/chat', chatRoutes); // تفعيل راوت الشات بوت هنا
 
 // Test Route
 app.get('/', (req: Request, res: Response) => {
@@ -45,11 +47,11 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 // ==========================================
-// Global Error Handler (يجب أن يكون الأخير دائماً قبل تشغيل السيرفر)
+// Global Error Handler
 // ==========================================
 app.use(errorHandler);
 
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
-});                
+});

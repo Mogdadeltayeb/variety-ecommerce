@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "E-commerce Project Architecture",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "output": ".archify/architecture-ecommerce-20261025-164742/architecture.html",
+    "repository": {
+      "url": "https://github.com/Mogdadeltayeb/variety-ecommerce",
+      "link_mode": "local-only",
+      "revision": "a9479c631504990f77020183cf64ff25f2cf5f75"
+    },
+    "views": [
+      {
+        "id": "overview",
+        "label": "Overview",
+        "focus": ["api-clients", "express-api", "prisma-access", "postgres"]
+      },
+      {
+        "id": "identity",
+        "label": "Identity",
+        "focus": ["express-api", "auth-gates"]
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "api-clients",
+      "type": "external",
+      "label": "HTTP API clients",
+      "sublabel": "consumer not identified at HEAD",
+      "pos": [40, 245],
+      "size": [165, 74]
+    },
+    {
+      "id": "express-api",
+      "type": "backend",
+      "label": "Express API",
+      "sublabel": "REST routes and controllers",
+      "pos": [290, 245],
+      "size": [190, 76],
+      "sources": [
+        {
+          "path": "ecommerce-backend/server.ts",
+          "line": 1,
+          "end_line": 55,
+          "label": "Server and route mounts"
+        },
+        {
+          "path": "ecommerce-backend/src/routes/product.routes.ts",
+          "line": 1,
+          "end_line": 39,
+          "label": "Public and protected routes"
+        }
+      ]
+    },
+    {
+      "id": "auth-gates",
+      "type": "security",
+      "label": "JWT and role gates",
+      "sublabel": "authentication plus ADMIN / VENDOR checks",
+      "pos": [290, 90],
+      "size": [190, 76],
+      "sources": [
+        {
+          "path": "ecommerce-backend/src/middleware/auth.middleware.ts",
+          "line": 1,
+          "end_line": 40,
+          "label": "JWT verification"
+        },
+        {
+          "path": "ecommerce-backend/src/middleware/role.middleware.ts",
+          "line": 1,
+          "end_line": 40,
+          "label": "Role authorization"
+        }
+      ]
+    },
+    {
+      "id": "image-files",
+      "type": "database",
+      "label": "Product image files",
+      "sublabel": "local uploads/products directory",
+      "pos": [290, 420],
+      "size": [190, 76],
+      "sources": [
+        {
+          "path": "ecommerce-backend/src/middleware/upload.middleware.ts",
+          "line": 1,
+          "end_line": 35,
+          "label": "Multer disk storage"
+        },
+        {
+          "path": "ecommerce-backend/server.ts",
+          "line": 27,
+          "end_line": 31,
+          "label": "Static uploads route"
+        }
+      ]
+    },
+    {
+      "id": "prisma-access",
+      "type": "backend",
+      "label": "Prisma data access",
+      "sublabel": "@prisma/client used by controllers",
+      "pos": [630, 245],
+      "size": [190, 76],
+      "sources": [
+        {
+          "path": "ecommerce-backend/src/controllers/product.controller.ts",
+          "line": 1,
+          "end_line": 20,
+          "label": "Controller queries"
+        },
+        {
+          "path": "ecommerce-backend/src/controllers/order.controller.ts",
+          "line": 1,
+          "end_line": 25,
+          "label": "Order persistence"
+        }
+      ]
+    },
+    {
+      "id": "postgres",
+      "type": "database",
+      "label": "PostgreSQL",
+      "sublabel": "users, catalog, carts, orders",
+      "pos": [940, 245],
+      "size": [175, 76],
+      "sources": [
+        {
+          "path": "ecommerce-backend/prisma/schema.prisma",
+          "line": 1,
+          "end_line": 10,
+          "label": "Datasource configuration"
+        },
+        {
+          "path": "ecommerce-backend/prisma/schema.prisma",
+          "line": 11,
+          "end_line": 166,
+          "label": "Relational models"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "clients-to-api",
+      "from": "api-clients",
+      "to": "express-api",
+      "label": "HTTP /api/*"
+    },
+    {
+      "id": "api-auth",
+      "from": "express-api",
+      "to": "auth-gates",
+      "label": "protected route checks",
+      "variant": "security"
+    },
+    {
+      "id": "api-images",
+      "from": "express-api",
+      "to": "image-files",
+      "label": "write and serve uploads"
+    },
+    {
+      "id": "api-to-prisma",
+      "from": "express-api",
+      "to": "prisma-access",
+      "label": "controller queries"
+    },
+    {
+      "id": "prisma-to-postgres",
+      "from": "prisma-access",
+      "to": "postgres",
+      "label": "PostgreSQL datasource"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "Pinned snapshot scope",
+      "items": [
+        "The committed frontend is the default Next.js starter and contains no API calls.",
+        "Current storefront pages, cart context, and Gemini chat route are working-tree changes and are excluded from this pinned diagram.",
+        "The API consumer is therefore shown as unidentified; no frontend-to-backend integration is asserted."
+      ]
+    }
+  ]
+}

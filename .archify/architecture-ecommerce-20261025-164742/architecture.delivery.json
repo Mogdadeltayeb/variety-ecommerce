@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "36224951-ffad-4e89-a4d8-dce1bbc4117e",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "c:\\store\\.archify\\architecture-ecommerce-20261025-164742\\candidate.json",
+  "output": "C:\\store\\.archify\\architecture-ecommerce-20261025-164742\\architecture.html",
+  "specification": {
+    "sha256": "613691fbe0421f60565faf2b59989134fbc20544c70183c67e1056215e72c3b5",
+    "bytes": 5248
+  },
+  "artifact": {
+    "sha256": "2fbc10a28cc99a17e2d8e33bb39e28cb1f7099bace3fbb919f998eab1063ab25",
+    "bytes": 838599
+  }
+}

@@ -15,8 +15,7 @@ async function main() {
   // 1. إنشاء التصنيفات أولاً
   await seedCategories(prisma);
 
-  // 2. إنشاء المنتجات بعدها
-  await seedProducts(prisma);
+  
 
   console.log('Seeding finished successfully! 🌱');
 }
